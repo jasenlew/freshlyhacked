@@ -29,6 +29,10 @@ var app = angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/experiences', {
+        templateUrl: 'views/experiences.html',
+        controller: 'ExperiencesController'
+      })
       .otherwise({
         redirectTo: '/'
       });

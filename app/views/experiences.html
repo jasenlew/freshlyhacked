@@ -1,8 +1,3 @@
-<div ng-repeat="exp in experiences">
-  <a href="{{ exp.url }}"> {{exp.name}} </a>
-  <a ng-click="deleteExperience($index)">delete</a>
-</div>
-
 <form ng-submit="submitExperience()">
   <input type="text" ng-model="experience.name" placeholder="Experience"/>
   <input type="url" ng-model="experience.url"/>
@@ -21,8 +16,20 @@
     <th>Lon</th>
     <th>Duration</th>
     <th>Price</th>
+    <th>Delete</th>
+  </tr>
+  <tr ng-repeat="exp in experiences">
+    <th><a href="{{ exp.url }}"> {{exp.name}} </a></th>
+    <th> {{exp.lat}} </th>
+    <th> {{exp.lon}} </th>
+    <th> {{exp.duration}} </th>
+    <th> {{exp.price}} </th>
+    <th><a ng-click="deleteExperience($index)">delete</a></th>
   </tr>
 </table>
+
+</br>
+</br>
 
 Experiences: {{ experiences }}</br>
 Experience: {{ experience }}

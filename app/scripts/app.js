@@ -38,4 +38,5 @@ var app = angular
         redirectTo: '/'
       });
   })
+  .run(function(){})
   .constant('FIREBASE_URL', 'https://glaring-fire-1921.firebaseio.com/');

@@ -4,6 +4,12 @@ body {
   padding-bottom: 20px;
 }
 
+#map {
+    height: 500px;
+    width: 700px;
+    cursor: crosshair;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

@@ -1,5 +1,6 @@
-
-
+<!--Container for map-->
+<div id="map"></div>
+</br>
 <form ng-submit="submitExperience()">
   <input type="text" ng-model="experience.name" placeholder="Experience"/>
   <input type="url" ng-model="experience.url"/>
@@ -30,6 +31,12 @@
   </tr>
 </table>
 
+<script>
+//  Create map with mapbox tiles and no zoom via scroll
+  var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
+    scrollWheelZoom: false
+  }).setView([37.6833,-122.32167], 11);  //SF Bay Area
+</script>
 
 <!--
 </br>

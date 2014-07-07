@@ -25,4 +25,8 @@ app.controller('ExperiencesController', function ($scope) {
     };
   };
 
+  $scope.deleteExperience = function (index) {
+    $scope.experiences.splice(index, 1);
+  };
+
 });

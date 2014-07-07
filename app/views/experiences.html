@@ -1,1 +1,24 @@
-<p> {{ 'Hello world' }} </p>
+<form ng-submit="submitExperience()">
+  <input type="text" ng-model="experience.name" placeholder="Experience"/>
+  <input type="url" ng-model="experience.url"/>
+  <input type="text" ng-model="experience.lat" placeholder="Latitude"/>
+  <input type="text" ng-model="experience.lon" placeholder="Longitude"/>
+  <input type="text" ng-model="experience.duration" placeholder="Duration"/>
+  <input type="text" ng-model="experience.price" placeholder="Price"/>
+  </br>
+  <input type="submit" value="Add Experience" />
+</form>
+
+<table>
+  <tr>
+    <th>Experience</th>
+    <th>URL</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Duration</th>
+    <th>Price</th>
+  </tr>
+</table>
+
+Experiences: {{ experiences }}</br>
+Experience: {{ experience }}

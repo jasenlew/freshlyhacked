@@ -1,9 +1,9 @@
 'use strict';
 
 app.controller('ExperiencesController', function ($scope, Experience) {
-  // Excluding Notes, Tags, Pics and Address
-  $scope.experiences = [];
+  $scope.experiences = Experience.get();
 
+  // Excluding Notes, Tags, Pics and Address
   $scope.experience = {
       name: '',
       url: 'http://www.',
@@ -15,15 +15,18 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
   $scope.submitExperience = function () {
 //    $scope.experiences.push($scope.experience);
-    Experience.save($scope.experience);
-    $scope.experience = {
-      name: '',
-      url: 'http://www.',
-      lat: '',
-      lon: '',
-      duration: '',
-      price: ''
-    };
+    Experience.save($scope.experience, function (ref) {
+      $scope.experiences[ref.name] = $scope.experience;
+
+      $scope.experience = {
+        name: '',
+        url: 'http://www.',
+        lat: '',
+        lon: '',
+        duration: '',
+        price: ''
+      };
+    });
   };
 
   $scope.deleteExperience = function (index) {

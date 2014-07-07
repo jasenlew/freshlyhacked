@@ -11,7 +11,7 @@
 
   <input type="submit" value="Add Experience" />
 </form>
-
+</br>
 <table>
   <tr>
     <th>Experience</th>
@@ -32,10 +32,26 @@
 </table>
 
 <script>
-//  Create map with mapbox tiles and no zoom via scroll
+  //  Create map with mapbox tiles and no zoom via scroll
   var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
     scrollWheelZoom: false
   }).setView([37.6833,-122.32167], 11);  //SF Bay Area
+
+  var BlackMarker = L.Icon.extend({
+    options: {
+      iconUrl: 'images/black_circle_marker_v2.png',
+      iconSize: [40],
+      iconAnchor: [20,45],
+      popupAnchor: [0, -35]
+    }
+  });
+
+  var blackMarker = new BlackMarker({});
+
+  L.marker([37.6833,-122.32167], {icon: blackMarker})
+    .addTo(map)
+    .bindPopup("I am my first custom pin!");
+
 </script>
 
 <!--

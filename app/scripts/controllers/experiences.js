@@ -15,8 +15,8 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
   $scope.submitExperience = function () {
 
-    console.log("Latitude: ", $scope.experience.lat);
-    console.log("Longitude: ", $scope.experience.lon);
+//    console.log("Latitude: ", $scope.experience.lat);
+//    console.log("Longitude: ", $scope.experience.lon);
 
     Experience.create($scope.experience).then(function () {
       $scope.experience = {

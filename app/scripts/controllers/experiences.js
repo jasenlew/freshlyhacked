@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ExperiencesController', function ($scope) {
+app.controller('ExperiencesController', function ($scope, Experience) {
   // Excluding Notes, Tags, Pics and Address
   $scope.experiences = [];
 
@@ -14,7 +14,8 @@ app.controller('ExperiencesController', function ($scope) {
   };
 
   $scope.submitExperience = function () {
-    $scope.experiences.push($scope.experience);
+//    $scope.experiences.push($scope.experience);
+    Experience.save($scope.experience);
     $scope.experience = {
       name: '',
       url: 'http://www.',

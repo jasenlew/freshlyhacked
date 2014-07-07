@@ -18,13 +18,13 @@
     <th>Price</th>
     <th>Delete</th>
   </tr>
-  <tr ng-repeat="exp in experiences">
+  <tr ng-repeat="(experienceID, exp) in experiences">
     <th><a href="{{ exp.url }}"> {{exp.name}} </a></th>
     <th> {{exp.lat}} </th>
     <th> {{exp.lon}} </th>
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
-    <th><a ng-click="deleteExperience($index)">delete</a></th>
+    <th><a ng-click="deleteExperience(experienceID)">delete</a></th>
   </tr>
 </table>
 

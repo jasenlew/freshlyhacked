@@ -29,8 +29,11 @@ app.controller('ExperiencesController', function ($scope, Experience) {
     });
   };
 
-  $scope.deleteExperience = function (index) {
-    $scope.experiences.splice(index, 1);
+  $scope.deleteExperience = function (experienceID) {
+//    $scope.experiences.splice(index, 1);
+    Experience.delete({id: experienceID}, function () {
+      delete $scope.experiences[experienceID];
+    });
   };
 
 });

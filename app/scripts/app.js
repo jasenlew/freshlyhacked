@@ -18,7 +18,8 @@ var app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'firebase'
+    'firebase',
+    'leaflet-directive'
   ])
   .config(function ($routeProvider) {
     $routeProvider

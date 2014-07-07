@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('ExperiencesController', function ($scope, Experience) {
-  $scope.experiences = Experience.get();
+  $scope.experiences = Experience.all;
 
   // Excluding Notes, Tags, Pics and Address
   $scope.experience = {
@@ -14,14 +14,11 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   };
 
   $scope.submitExperience = function () {
-//    $scope.experiences.push($scope.experience);
 
     console.log("Latitude: ", $scope.experience.lat);
     console.log("Longitude: ", $scope.experience.lon);
 
-    Experience.save($scope.experience, function (ref) {
-      $scope.experiences[ref.name] = $scope.experience;
-
+    Experience.create($scope.experience).then(function () {
       $scope.experience = {
         name: '',
         url: 'http://www.',
@@ -34,10 +31,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   };
 
   $scope.deleteExperience = function (experienceID) {
-//    $scope.experiences.splice(index, 1);
-    Experience.delete({id: experienceID}, function () {
-      delete $scope.experiences[experienceID];
-    });
+    Experience.delete(experienceID);
   };
 
 });

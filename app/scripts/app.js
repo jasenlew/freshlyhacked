@@ -1,3 +1,5 @@
+/* global app:true */
+
 'use strict';
 
 /**
@@ -8,7 +10,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('freshlyhackedApp', [
     'ngAnimate',
     'ngCookies',

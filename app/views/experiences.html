@@ -45,7 +45,7 @@
     <!--<th> {{exp.lon}} </th>-->
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
-    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID, exp.name)">X</a></button></th>
+    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID, exp.lat)">X</a></button></th>
   </tr>
 </table>
 
@@ -59,6 +59,8 @@
   var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
     scrollWheelZoom: false
   }).setView([37.6833,-122.32167], 10);  //SF Bay Area
+
+  var markerObj = {};
 
   var BlackMarker = L.Icon.extend({
     options: {

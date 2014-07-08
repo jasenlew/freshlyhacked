@@ -16,6 +16,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
   $scope.submitExperience = function () {
 
+    // Convert address to latitude and longitude
     var geocoder = new google.maps.Geocoder();
 
     geocoder.geocode( { 'address': $scope.experience.address}, function(results, status) {
@@ -25,6 +26,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
       }
     });
 
+    // Create BlackMarker class of pins
     var BlackMarker = L.Icon.extend({
       options: {
         iconUrl: 'images/black_circle_marker_v2.png',
@@ -34,11 +36,18 @@ app.controller('ExperiencesController', function ($scope, Experience) {
       }
     });
 
+    // Create an instance of a black marker
     var blackMarker = new BlackMarker({});
 
-    L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
-      .addTo(map)
-      .bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
+    markerObj[$scope.experience.lat] = L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker});
+
+    map.addLayer(markerObj[$scope.experience.lat]);
+
+    markerObj[$scope.experience.lat].bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
+
+//    L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
+//      .addTo(map)
+//      .bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
 
     Experience.create($scope.experience).then(function () {
       $scope.experience = {
@@ -52,10 +61,9 @@ app.controller('ExperiencesController', function ($scope, Experience) {
     });
   };
 
-  $scope.deleteExperience = function (experienceID, name) {
-    console.log(name);
-    console.log(experienceID);
+  $scope.deleteExperience = function (experienceID, lat) {
     Experience.delete(experienceID);
+    map.removeLayer(markerObj[lat]);
   };
 
 });

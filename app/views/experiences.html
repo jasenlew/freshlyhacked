@@ -6,6 +6,7 @@
 <form role="form" xmlns="http://www.w3.org/1999/html">
   Filter Experiences: <input ng-model="search.experiences" autofocus>
 </form>
+<!--<button ng-click="loadMarkers()">Load Markers</button>-->
 <hr>
 
 <form ng-submit="submitExperience()">
@@ -20,6 +21,7 @@
 
   <input type="submit" class='btn-primary' value="Add Experience" />
 </form>
+
 </br>
 <table ng-cloak class="table">
   <thead>
@@ -43,7 +45,7 @@
     <!--<th> {{exp.lon}} </th>-->
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
-    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID)">X</a></button></th>
+    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID, exp.name)">X</a></button></th>
   </tr>
 </table>
 
@@ -105,6 +107,18 @@
 
     // TO DO: NEED TO VALIDATE IF USE PROMPT
     var name = prompt("Please give me your name?");
+
+    /* WIP for bouncing marker
+    L.marker([e.latlng.lat, e.latlng.lng], {
+      bounceOnAdd: true,
+      bounceOnAddOptions: {duration: 5000, height: 400},
+      bounceOnAddCallback: function () {
+        return ({icon: clickMarker});
+      }
+    })
+        .addTo(map)
+        .bindPopup(name);
+     */
 
     L.marker([e.latlng.lat, e.latlng.lng], {icon: clickMarker})
         .addTo(map)

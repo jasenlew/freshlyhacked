@@ -52,7 +52,9 @@ app.controller('ExperiencesController', function ($scope, Experience) {
     });
   };
 
-  $scope.deleteExperience = function (experienceID) {
+  $scope.deleteExperience = function (experienceID, name) {
+    console.log(name);
+    console.log(experienceID);
     Experience.delete(experienceID);
   };
 

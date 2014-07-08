@@ -1,24 +1,24 @@
 <!--Container for map-->
 
-<form role="form" xmlns="http://www.w3.org/1999/html">
-  <input ng-model="search.experiences" placeholder="Filter experiences...">
-</form>
-
-</br>
-
 <div id="map"></div>
 
 </br>
+<form role="form" xmlns="http://www.w3.org/1999/html">
+  Filter Experiences: <input ng-model="search.experiences" autofocus>
+</form>
+<hr>
+
 <form ng-submit="submitExperience()">
   <input type="text" ng-model="experience.name" placeholder="Experience"/>
   <input type="url" ng-model="experience.url"/>
   <input type="text" ng-model="experience.address" placeholder="Address"/>
+  </br>
   <!--<input type="text" ng-model="experience.lat" placeholder="Latitude"/>-->
   <!--<input type="text" ng-model="experience.lon" placeholder="Longitude"/>-->
   <input type="text" ng-model="experience.duration" placeholder="Duration"/>
   <input type="text" ng-model="experience.price" placeholder="Price"/>
 
-  <input type="submit" value="Add Experience" />
+  <input type="submit" class='btn-primary' value="Add Experience" />
 </form>
 </br>
 <table ng-cloak class="table">
@@ -43,7 +43,7 @@
     <!--<th> {{exp.lon}} </th>-->
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
-    <th><button><a ng-click="deleteExperience(experienceID)">delete</a></button></th>
+    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID)">X</a></button></th>
   </tr>
 </table>
 
@@ -56,7 +56,18 @@
   //  Create map with mapbox tiles and no zoom via scroll
   var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
     scrollWheelZoom: false
-  }).setView([37.6833,-122.32167], 11);  //SF Bay Area
+  }).setView([37.6833,-122.32167], 10);  //SF Bay Area
+
+  var BlackMarker = L.Icon.extend({
+    options: {
+      iconUrl: 'images/black_circle_marker_v2.png',
+      iconSize: [40],
+      iconAnchor: [20,45],
+      popupAnchor: [0, -35]
+    }
+  });
+
+  var blackMarker = new BlackMarker({});
 
   // A LISTENER FUNCTION that will run passing in the event object
   var onMapClick = function(e) {

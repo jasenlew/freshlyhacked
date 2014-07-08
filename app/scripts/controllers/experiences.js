@@ -17,9 +17,8 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   $scope.submitExperience = function () {
 
     var geocoder = new google.maps.Geocoder();
-    var address = $scope.experience.address;
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode( { 'address': $scope.experience.address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         $scope.experience.lat = results[0].geometry.location.lat();
         $scope.experience.lon = results[0].geometry.location.lng();

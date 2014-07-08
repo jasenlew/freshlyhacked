@@ -38,7 +38,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
     L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
       .addTo(map)
-      .bindPopup("<strong>" + $scope.experience.name + "</strong>");
+      .bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
 
     Experience.create($scope.experience).then(function () {
       $scope.experience = {

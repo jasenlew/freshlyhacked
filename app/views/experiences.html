@@ -74,24 +74,27 @@
     {
       lat: 37.797926,
       lon: -122.255855,
-      name: "Segway Oakland Tour"
+      name: "Segway Oakland Tour",
+      url: "http://www.segwayofoakland.com/"
     },
     {
       lat: 37.598590,
       lon: -122.065593,
-      name: "iFly Indoor Skydiving"
+      name: "iFly Indoor Skydiving",
+      url: "http://sfbay.iflyworld.com/"
     },
     {
       lat: 37.559586,
       lon: -122.368820,
-      name: "Rock'n Jump Trampoline"
+      name: "Rock'n Jump Trampoline",
+      url: "http://www.rockinjump.com/"
     }
   ];
 
   for (var i = 0; i < onLoadMarkerArr.length; i++) {
     L.marker([onLoadMarkerArr[i].lat, onLoadMarkerArr[i].lon], {icon: blackMarker})
         .addTo(map)
-        .bindPopup(onLoadMarkerArr[i].name);
+        .bindPopup('<a href="' + onLoadMarkerArr[i].url + '"><strong>' + onLoadMarkerArr[i].name + '</strong></a>');
   }
 
   // A LISTENER FUNCTION that will run passing in the event object

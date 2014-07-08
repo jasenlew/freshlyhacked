@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demoapp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+
+	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+	  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	  <script src="../bower_components/angular/angular.min.js"></script>
+	  <script src="../bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src="../app/scripts/services/experience.js"></script>
+
+    <script>
+      var app = angular.module("demoapp", ['leaflet-directive']);
+      app.controller("DemoController", [ "$scope", function($scope) {
+        angular.extend($scope, {
+          center: {
+            lat: 37.6833,
+            lng: -122.32167,
+            zoom: 11
+          },
+          defaults: {
+            scrollWheelZoom: false
+          },
+          markers: {
+            Madrid: {
+              lat: 37.6833,
+              lng: -122.32167,
+              message: "This is Madrid. But you can drag me to another position",
+              focus: false,
+              draggable: true
+            },
+            Barcelona: {
+              lat: 37.6833,
+              lng: -122.39167,
+              message: "This is Barcelona.",
+              focus: false,
+              draggable: false
+            }
+          }
+        })
+      }]);
+	  </script>
+
+	</head>
+
+	<body ng-controller="DemoController">
+		<leaflet markers="markers" center="center" width="700px" height="600px"></leaflet>
+	</body>
+
+</html>

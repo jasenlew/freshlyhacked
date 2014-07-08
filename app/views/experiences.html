@@ -1,5 +1,13 @@
 <!--Container for map-->
+
+<form role="form" xmlns="http://www.w3.org/1999/html">
+  <input ng-model="search.experiences" placeholder="Filter experiences...">
+</form>
+
+</br>
+
 <div id="map"></div>
+
 </br>
 <form ng-submit="submitExperience()">
   <input type="text" ng-model="experience.name" placeholder="Experience"/>
@@ -36,28 +44,35 @@
   </tr>
 </table>
 
+<!--Angular-leaflet-directive map-->
+<!--<div ng-controller="MarkersController">-->
+  <!--<leaflet markers="markers" center="center" width="700px" height="600px"></leaflet>-->
+<!--</div>-->
+
 <script>
   //  Create map with mapbox tiles and no zoom via scroll
   var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
     scrollWheelZoom: false
   }).setView([37.6833,-122.32167], 11);  //SF Bay Area
 
-  var BlackMarker = L.Icon.extend({
-    options: {
-      iconUrl: 'images/black_circle_marker_v2.png',
-      iconSize: [40],
-      iconAnchor: [20,45],
-      popupAnchor: [0, -35]
-    }
-  });
+  // A LISTENER FUNCTION that will run passing in the event object
+  var onMapClick = function(e) {
+    console.log("Map object clicked, which contains:");
+    console.dir(e);
+    var clickMarker = new BlackMarker({});
 
-  var blackMarker = new BlackMarker({});
+    // TO DO: NEED TO VALIDATE IF USE PROMPT
+    var name = prompt("Please give me your name?");
 
-  L.marker([37.6833,-122.32167], {icon: blackMarker})
-    .addTo(map)
-    .bindPopup("I am my first custom pin!");
+    L.marker([e.latlng.lat, e.latlng.lng], {icon: clickMarker})
+        .addTo(map)
+        .bindPopup(name);
+  };
 
+  // Attaching an EVENT HANDLER, so that when there is a 'click' event on the 'map', 'onMapClick' function will run
+  map.on('click', onMapClick);
 </script>
+
 
 <!--
 </br>

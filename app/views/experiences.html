@@ -60,6 +60,7 @@
     scrollWheelZoom: false
   }).setView([37.6833,-122.32167], 10);  //SF Bay Area
 
+  // Object that will hold markers with each latitude as key
   var markerObj = {};
 
   var BlackMarker = L.Icon.extend({
@@ -96,19 +97,21 @@
   ];
 
   for (var i = 0; i < onLoadMarkerArr.length; i++) {
-    L.marker([onLoadMarkerArr[i].lat, onLoadMarkerArr[i].lon], {icon: blackMarker})
-        .addTo(map)
-        .bindPopup('<a href="' + onLoadMarkerArr[i].url + '"><strong>' + onLoadMarkerArr[i].name + '</strong></a>');
+    markerObj[onLoadMarkerArr[i].lat] = L.marker([onLoadMarkerArr[i].lat, onLoadMarkerArr[i].lon], {icon: blackMarker});
+    map.addLayer(markerObj[onLoadMarkerArr[i].lat]);
+    markerObj[onLoadMarkerArr[i].lat].bindPopup('<a href="' + onLoadMarkerArr[i].url + '"><strong>' + onLoadMarkerArr[i].name + '</strong></a>');
   }
 
   // A LISTENER FUNCTION that will run passing in the event object
   var onMapClick = function(e) {
     console.log("Map object clicked, which contains:");
-    console.dir(e);
+    console.dir(e.latlng.lng);
+    console.dir(e.latlng.lat);
+
     var clickMarker = new BlackMarker({});
 
     // TO DO: NEED TO VALIDATE IF USE PROMPT
-    var name = prompt("Please give me your name?");
+    var name = prompt("Experience");
 
     /* WIP for bouncing marker
     L.marker([e.latlng.lat, e.latlng.lng], {

@@ -39,15 +39,21 @@ app.controller('ExperiencesController', function ($scope, Experience) {
     // Create an instance of a black marker
     var blackMarker = new BlackMarker({});
 
+    // Add new marker to markerObj to reference deletion later
     markerObj[$scope.experience.lat] = L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker});
 
+    // Add marker to map via a new layer
     map.addLayer(markerObj[$scope.experience.lat]);
 
+    // Add popup to marker just created
     markerObj[$scope.experience.lat].bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
 
+//  Older implementation where all markers are added to single layer
 //    L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
 //      .addTo(map)
 //      .bindPopup('<a href="' + $scope.experience.url + '"><strong>' + $scope.experience.name + '</strong></a>');
+
+    console.dir(markerObj);
 
     Experience.create($scope.experience).then(function () {
       $scope.experience = {
@@ -64,6 +70,8 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   $scope.deleteExperience = function (experienceID, lat) {
     Experience.delete(experienceID);
     map.removeLayer(markerObj[lat]);
+    delete markerObj[lat];
+    console.dir(markerObj);
   };
 
 });

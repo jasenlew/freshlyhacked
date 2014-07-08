@@ -7,6 +7,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   $scope.experience = {
       name: '',
       url: 'http://www.',
+      address: '',
       lat: '',
       lon: '',
       duration: '',
@@ -14,6 +15,16 @@ app.controller('ExperiencesController', function ($scope, Experience) {
   };
 
   $scope.submitExperience = function () {
+
+    var geocoder = new google.maps.Geocoder();
+    var address = $scope.experience.address;
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        $scope.experience.lat = results[0].geometry.location.lat();
+        $scope.experience.lon = results[0].geometry.location.lng();
+      }
+    });
 
     var BlackMarker = L.Icon.extend({
       options: {
@@ -26,7 +37,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
     var blackMarker = new BlackMarker({});
 
-    L.marker([$scope.experience.lat,$scope.experience.lon], {icon: blackMarker})
+    L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
       .addTo(map)
       .bindPopup("I am my first custom pin!");
 

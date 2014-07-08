@@ -12,8 +12,9 @@
 <form ng-submit="submitExperience()">
   <input type="text" ng-model="experience.name" placeholder="Experience"/>
   <input type="url" ng-model="experience.url"/>
-  <input type="text" ng-model="experience.lat" placeholder="Latitude"/>
-  <input type="text" ng-model="experience.lon" placeholder="Longitude"/>
+  <input type="text" ng-model="experience.address" placeholder="Address"/>
+  <!--<input type="text" ng-model="experience.lat" placeholder="Latitude"/>-->
+  <!--<input type="text" ng-model="experience.lon" placeholder="Longitude"/>-->
   <input type="text" ng-model="experience.duration" placeholder="Duration"/>
   <input type="text" ng-model="experience.price" placeholder="Price"/>
 
@@ -27,8 +28,9 @@
       <!--<th><a href="" ng-click="orderByField = 'name'; reverse=!reverse">Experience</a></th>-->
 
       <th>Experience</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
+      <th>Address</th>
+      <!--<th>Latitude</th>-->
+      <!--<th>Longitude</th>-->
       <th>Duration</th>
       <th>Price</th>
       <th>Delete</th>
@@ -36,8 +38,9 @@
   </thead>
   <tr ng-repeat="(experienceID, exp) in experiences">
     <th><a href="{{ exp.url }}"> {{exp.name}} </a></th>
-    <th> {{exp.lat}} </th>
-    <th> {{exp.lon}} </th>
+    <th> {{exp.address}}</th>
+    <!--<th> {{exp.lat}} </th>-->
+    <!--<th> {{exp.lon}} </th>-->
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
     <th><button><a ng-click="deleteExperience(experienceID)">delete</a></button></th>

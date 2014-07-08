@@ -29,7 +29,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
     // Create BlackMarker class of pins
     var BlackMarker = L.Icon.extend({
       options: {
-        iconUrl: 'images/black_circle_marker_v2.png',
+        iconUrl: 'app/images/black_circle_marker_v2.png',
         iconSize: [40],
         iconAnchor: [20,45],
         popupAnchor: [0, -35]

@@ -38,7 +38,7 @@ app.controller('ExperiencesController', function ($scope, Experience) {
 
     L.marker([$scope.experience.lat, $scope.experience.lon], {icon: blackMarker})
       .addTo(map)
-      .bindPopup("I am my first custom pin!");
+      .bindPopup("<strong>" + $scope.experience.name + "</strong>");
 
     Experience.create($scope.experience).then(function () {
       $scope.experience = {

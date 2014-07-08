@@ -69,6 +69,31 @@
 
   var blackMarker = new BlackMarker({});
 
+//  Hardcoded on-load markers
+  var onLoadMarkerArr = [
+    {
+      lat: 37.797926,
+      lon: -122.255855,
+      name: "Segway Oakland Tour"
+    },
+    {
+      lat: 37.598590,
+      lon: -122.065593,
+      name: "iFly Indoor Skydiving"
+    },
+    {
+      lat: 37.559586,
+      lon: -122.368820,
+      name: "Rock'n Jump Trampoline"
+    }
+  ];
+
+  for (var i = 0; i < onLoadMarkerArr.length; i++) {
+    L.marker([onLoadMarkerArr[i].lat, onLoadMarkerArr[i].lon], {icon: blackMarker})
+        .addTo(map)
+        .bindPopup(onLoadMarkerArr[i].name);
+  }
+
   // A LISTENER FUNCTION that will run passing in the event object
   var onMapClick = function(e) {
     console.log("Map object clicked, which contains:");

@@ -3,9 +3,7 @@
 <div id="map"></div>
 
 </br>
-<form role="form" xmlns="http://www.w3.org/1999/html">
-  Filter Experiences: <input ng-model="search.experiences" autofocus>
-</form>
+Filter Experiences: <input type="text" ng-model="search" autofocus>
 <!--<button ng-click="loadMarkers()">Load Markers</button>-->
 <hr>
 
@@ -38,11 +36,9 @@
       <th>Delete</th>
     </tr>
   </thead>
-  <tr ng-repeat="(experienceID, exp) in experiences">
+  <tr ng-repeat="(experienceID, exp) in experiences | orderByPriority | filter:search">
     <th><a href="{{ exp.url }}"> {{exp.name}} </a></th>
     <th> {{exp.address}}</th>
-    <!--<th> {{exp.lat}} </th>-->
-    <!--<th> {{exp.lon}} </th>-->
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
     <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID, exp.lat)">X</a></button></th>
@@ -87,6 +83,12 @@
       lon: -122.065593,
       name: "iFly Indoor Skydiving",
       url: "http://sfbay.iflyworld.com/"
+    },
+    {
+      lat: 37.9767581,
+      lon: -122.3654035,
+      name: "SEAL One-Day Training",
+      url: "http://www.richmondrodandgun.com/"
     },
     {
       lat: 37.559586,

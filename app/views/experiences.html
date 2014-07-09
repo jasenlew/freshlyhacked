@@ -36,12 +36,12 @@ Filter Experiences: <input type="text" ng-model="search" autofocus>
       <th>Delete</th>
     </tr>
   </thead>
-  <tr ng-repeat="(experienceID, exp) in experiences | orderByPriority | filter:search">
+  <tr ng-repeat="exp in experiences | orderByPriority | filter:search">
     <th><a href="{{ exp.url }}"> {{exp.name}} </a></th>
     <th> {{exp.address}}</th>
     <th> {{exp.duration}} </th>
     <th> {{exp.price}} </th>
-    <th><button class="btn-danger"><a ng-click="deleteExperience(experienceID, exp.lat)">X</a></button></th>
+    <th><button class="btn-danger"><a ng-click="deleteExperience(exp.$id, exp.lat)">X</a></button></th>
   </tr>
 </table>
 
@@ -54,7 +54,7 @@ Filter Experiences: <input type="text" ng-model="search" autofocus>
   //  Create map with mapbox tiles and no zoom via scroll
   var map = L.mapbox.map('map', 'lrjasen.ic7e61a6', {
     scrollWheelZoom: false
-  }).setView([37.6833,-122.32167], 10);  //SF Bay Area
+  }).setView([37.7633,-122.30167], 10);  //SF Bay Area
 
   // Object that will hold markers with each latitude as key
   var markerObj = {};
